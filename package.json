@@ -16,6 +16,7 @@
     "gulp-jade": "^1.1.0",
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^2.3.2",
+    "mongoose": "^4.6.0",
     "node-sass": "^3.8.0"
   }
 }

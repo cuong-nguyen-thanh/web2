@@ -8,7 +8,7 @@ var sass = require("gulp-sass");
 gulp.task("liveload", ['compile-sass', 'compile-jade', "run"], function(){
 	browserSync.init({
 		proxy: "localhost:8888",
-		files: ["./client/**/*.*", "gulpfile.js"],
+		files: ["./client/**/*.*"],
 		browser: ["google chrome"],
 		port: "7000"
 	});
