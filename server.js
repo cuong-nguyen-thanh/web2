@@ -7,9 +7,25 @@ var bodyParser = require('body-parser')
 /******************************** DB *****************************/
 
 var mongoose = require('mongoose');
+var Clazz = require('./db/models/class');
 var User = require('./db/models/user');
 mongoose.connect('mongodb://localhost/techkids');
 
+User.find({username: "admin"})
+.populate('clazz')
+.exec(function(err, data){
+  console.log(data);
+});
+
+// var Clazz = require('./db/models/class');
+// var class1 = new Clazz({
+//   teacher: {
+//     age: 21
+//   }
+// });
+//
+// var error = class1.validateSync();
+// console.log(error);
 // var class1 = new Class(
 //   {
 //     name: "class1",
@@ -39,7 +55,20 @@ var app = express();
 app.use(express.static(__dirname + "/client"));
 app.use( bodyParser.json() );
 
+
+
+
+
 app.route("/api/user/login")
+      .get(function(req, res){
+        User.find({username: /dm/})
+        .limit(1)
+        .select("username password")
+        .exec(function(err, data){
+          console.log(data);
+          res.send(data);
+        });
+      })
       .post(function(req, res){
         if (req.body) {
           User.find({username: req.body.username, password: req.body.password}, function(err, data){
