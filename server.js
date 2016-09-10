@@ -2,18 +2,13 @@ var http = require("http");
 var express = require("express");
 var fileHelper = require("./fileHelper");
 var statistic = require("./Statistic");
-
+var bodyParser = require('body-parser')
 
 /******************************** DB *****************************/
 
 var mongoose = require('mongoose');
-var Class = require('./db/models/class');
-
-mongoose.connect('mongodb://localhost/techkids1');
-
-Class.find({name: "class2"}, function(err, data){
-  console.log(data);
-});
+var User = require('./db/models/user');
+mongoose.connect('mongodb://localhost/techkids');
 
 // var class1 = new Class(
 //   {
@@ -42,20 +37,22 @@ Class.find({name: "class2"}, function(err, data){
 
 var app = express();
 app.use(express.static(__dirname + "/client"));
+app.use( bodyParser.json() );
 
-app.route("/api/file/:number")
-      .get(function(req, res){
-        statistic.getByNumber("data.txt", req.params.number, function(data){
-          res.send(data);
-        })
-
-      })
-      .delete(function(req, res){
-        statistic.deleteByNumber("data.txt", req.params.number, function(data){
-          res.send(data);
-        })
+app.route("/api/user/login")
+      .post(function(req, res){
+        if (req.body) {
+          User.find({username: req.body.username, password: req.body.password}, function(err, data){
+            if (data.length > 0) {
+              res.json({status: true})
+            } else {
+              res.json({status: false})
+            }
+          });
+        } else {
+          res.json({status: false})
+        }
       });
-
 
 
 http.createServer(app).listen(8888);

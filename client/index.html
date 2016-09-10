@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/app.css">
-    <title></title>
-  </head>
-  <body style="height:1000px">
-    <h1>Hello world 1111111</h1>
-  </body>
-</html>
+<head>
+  <title>hello jade</title>
+  <link href="css/app.css">
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+  <h1>login</h1>
+  <p>Username:</p>
+  <input id="username" type="text">
+  <p>Password:</p>
+  <input id="password" type="password">
+  <br>
+  <input type="button" onclick="login()" value="Login">
+  <br>
+  <p id="message"></p>
+  <script type="text/javascript">
+    function login(event) {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var msgElement = document.getElementById("message");
+      $.ajax({
+        url: "/api/user/login",
+        method: "POST",
+        contentType : "application/json",
+        data: JSON.stringify({"username": username, "password": password})
+      }).done(function(response) {
+        if (response.status) {
+          msgElement.innerHTML = "Success";
+        } else {
+          msgElement.innerHTML = "Fail";
+        }
+      });
+    }
+  </script>
+</body>

@@ -10,6 +10,7 @@
   "description": "",
   "dependencies": {
     "better-console": "^0.2.4",
+    "body-parser": "^1.15.2",
     "browser-sync": "^2.14.0",
     "express": "^4.14.0",
     "gulp": "^3.9.1",
