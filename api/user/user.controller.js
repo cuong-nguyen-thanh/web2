@@ -1,6 +1,7 @@
 'use strict';
 
 var User = require('./user.model');
+var logger = require('winston');
 
 module.exports = {
   findAll : function(req, res){
@@ -11,8 +12,10 @@ module.exports = {
 
   findByAccount : function(req, res){
     if (req.params.account) {
+      logger.log("debug", "START- findByAccount %s", req.params.account);
       User.find({username: req.params.account}).exec(function(err, data){
         res.json(data);
+        logger.log("debug", "END- findByAccount");
       });
     } else {
       res.json([]);

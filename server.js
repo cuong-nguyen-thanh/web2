@@ -1,6 +1,18 @@
 var http = require("http");
 var express = require("express");
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+
+var logger = require('winston');
+logger.add(logger.transports.File, { filename: 'techkids.log' });
+logger.remove(logger.transports.Console);
+logger.level = 'debug';
+
+// logger.log('info', 'Hello distributed log files!');
+// logger.info('Hello again distributed logs');
+// logger.error('Hello again distributed logs');
+//
+//
+// logger.log('debug', 'Now my debug messages are written to console!');
 
 /******************************** Mongo DB ***************************/
 var mongoose = require('mongoose');
