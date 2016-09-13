@@ -3,6 +3,7 @@ var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync');
 var jade = require("gulp-jade");
 var sass = require("gulp-sass");
+var apidoc = require('gulp-apidoc');
 
 //liveload
 gulp.task("liveload", ['compile-sass', 'compile-jade', "run"], function(){
@@ -41,4 +42,12 @@ gulp.task('compile-sass', function () {
    return gulp.src('./src/sass/*.scss')
       .pipe(sass())
       .pipe(gulp.dest('./client/css/'))
+});
+
+gulp.task('apidoc', function(done){
+          apidoc({
+            src: "api/",
+            dest: "api-docs/",
+						includeFilters: [ ".*\\.js$" ]
+          },done);
 });
