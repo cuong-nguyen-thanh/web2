@@ -6,7 +6,7 @@ var parseurl = require('parseurl');
 
 /******************************** Mongo DB ***************************/
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/techkids');
+mongoose.connect(' mongodb://admin:123456@ds033106.mlab.com:33106/techkids');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'DB connection error: '));
