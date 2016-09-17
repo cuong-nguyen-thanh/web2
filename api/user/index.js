@@ -23,6 +23,8 @@ var router = express.Router();
  */
 router.get('/all', controller.findAll);
 
+router.post('/', controller.addUser);
+
 /**
  * @api {GET} /api/user/:account get user by account
  * @apiName GetUserByAccount

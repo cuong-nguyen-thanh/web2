@@ -11,7 +11,8 @@ gulp.task("liveload", ['compile-sass', 'compile-jade', "run"], function(){
 		proxy: "localhost:8888",
 		files: ["./client/**/*.*"],
 		browser: ["google chrome"],
-		port: "7000"
+		port: "7000",
+		startPath: "/create-user.html"
 	});
 
   gulp.watch('./src/jade/*.jade', ['compile-jade']);
