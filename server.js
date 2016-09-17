@@ -48,4 +48,4 @@ app.get('/foo', function (req, res, next) {
   res.send('you viewed this page ' + req.session.views['/foo'] + ' times')
 });
 
-http.createServer(app).listen(80);
+http.createServer(app).listen(process.env.PORT || 5000);
