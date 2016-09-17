@@ -6,7 +6,7 @@ var parseurl = require('parseurl');
 
 /******************************** Mongo DB ***************************/
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://admin:123456@ds033106.mlab.com:33106/techkids');
+mongoose.connect('mongodb://admin:123456@ds033066.mlab.com:33066/techkidsweb2');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'DB connection error: '));
@@ -48,4 +48,4 @@ app.get('/foo', function (req, res, next) {
   res.send('you viewed this page ' + req.session.views['/foo'] + ' times')
 });
 
-http.createServer(app).listen(8888);
+http.createServer(app).listen(80);
