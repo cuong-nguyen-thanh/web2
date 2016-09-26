@@ -1,13 +1,15 @@
 var http = require("http");
 var express = require("express");
 var bodyParser = require('body-parser');
-var session = require('express-session');
-var parseurl = require('parseurl');
-var cookieParser = require('cookie-parser')
+// var session = require('express-session');
+// var parseurl = require('parseurl');
+// var cookieParser = require('cookie-parser')
+var auth = require('./api/auth/auth.service');
 var mySecret = "techkids";
 /******************************** Mongo DB ***************************/
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://admin:123456@ds033066.mlab.com:33066/techkidsweb2');
+//mongoose.connect('mongodb://admin:123456@ds033066.mlab.com:33066/techkidsweb2');
+mongoose.connect('mongodb://localhost/techkids');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'DB connection error: '));
@@ -17,12 +19,13 @@ db.once('open', function() {
 
 /******************************** Express App ************************/
 var app = express();
-app.use(cookieParser('techkids', {maxAge: 120}));
-app.use(session({
-  secret: "techkids"
-}));
+// app.use(cookieParser('techkids', {maxAge: 120}));
+// app.use(session({
+//   secret: "techkids"
+// }));
 
-app.use(express.static(__dirname + "/client"));
+app.use('/admin', auth.hasRole('admin'), express.static(__dirname + "/client/admin"));
+app.use('/', express.static(__dirname + "/client"));
 app.use(bodyParser.json() );
 
 require('./routes')(app);
@@ -44,7 +47,7 @@ require('./routes')(app);
 //
 //   next()
 // });
-// 
+//
 // app.get('/foo', function (req, res, next) {
 //   console.log(req.cookies);
 //   res.cookie("remember", true);

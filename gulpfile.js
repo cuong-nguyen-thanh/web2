@@ -9,7 +9,7 @@ var apidoc = require('gulp-apidoc');
 gulp.task("liveload", ['compile-sass', 'compile-jade', "run"], function(){
 	browserSync.init({
 		proxy: "localhost:8888",
-		files: ["./client/**/*.*"],
+		files: ["client/**/*.*"],
 		browser: ["google chrome"],
 		port: "7000",
 		startPath: "/create-user.html"

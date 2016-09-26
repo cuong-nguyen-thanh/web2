@@ -2,6 +2,7 @@
 
 var express = require('express');
 var controller = require('./user.controller');
+var auth = require('../auth/auth.service');
 
 var router = express.Router();
 
@@ -21,7 +22,7 @@ var router = express.Router();
  *       "name": "Thanh Cuong"
  *     }]
  */
-router.get('/all', controller.findAll);
+router.get('/all', auth.hasRole('admin'), controller.findAll);
 
 router.post('/', controller.addUser);
 

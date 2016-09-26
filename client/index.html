@@ -2,9 +2,11 @@
 <head>
   <title>hello jade</title>
   <link href="css/app.css">
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body ng-app="techkids">
   <h1>login</h1>
   <p>Username:</p>
   <input id="username" type="text">
@@ -14,7 +16,16 @@
   <input type="button" onclick="login()" value="Login">
   <br>
   <p id="message"></p>
-  <script type="text/javascript">
+  <div class="btn btn-primary">Test</div>
+  <table class="table">
+    <tr>
+      <th>A</th>
+      <th>A</th>
+      <th>A</th>
+    </tr>
+  </table>
+  <script src="js/app.js"></script>
+  <!-- <script type="text/javascript">
     function login(event) {
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
@@ -32,5 +43,5 @@
         }
       });
     }
-  </script>
+  </script> -->
 </body>
