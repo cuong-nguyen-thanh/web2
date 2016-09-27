@@ -12,7 +12,7 @@ gulp.task("liveload", ['compile-sass', 'compile-jade', "run"], function(){
 		files: ["client/**/*.*"],
 		browser: ["google chrome"],
 		port: "7000",
-		startPath: "/create-user.html"
+		startPath: "/admin/index.html"
 	});
 
   gulp.watch('./src/jade/*.jade', ['compile-jade']);

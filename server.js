@@ -24,7 +24,7 @@ var app = express();
 //   secret: "techkids"
 // }));
 
-app.use('/admin', auth.hasRole('admin'), express.static(__dirname + "/client/admin"));
+// app.use('/admin', auth.hasRole('admin'), express.static(__dirname + "/client/admin"));
 app.use('/', express.static(__dirname + "/client"));
 app.use(bodyParser.json() );
 

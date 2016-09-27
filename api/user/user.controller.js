@@ -51,5 +51,35 @@ module.exports = {
     } else {
       res.json([]);
     }
+  },
+
+  find : function(req, res){
+    console.log(req.query.username);
+    if (req.query) {
+      var query = {};
+      if(req.query.name){
+        query.name = {"$regex": req.query.name}
+      }
+      if(req.query.username){
+        console.log("ssdfsd");
+        query.username = req.query.username
+      }
+      query.age = {};
+      if(req.query.agefrom){
+        query.age.$gte = parseInt(req.query.agefrom)
+      }
+      if(req.query.ageto){
+        query.age.$lte = parseInt(req.query.ageto)
+      }
+      if(req.query.role){
+        query.role = req.query.role
+      }
+      console.log(query);
+      User.find(query).exec(function(err, data){
+        res.json(data);
+      });
+    } else {
+      res.json([]);
+    }
   }
 }

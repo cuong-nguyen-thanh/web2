@@ -22,7 +22,7 @@ var router = express.Router();
  *       "name": "Thanh Cuong"
  *     }]
  */
-router.get('/all', auth.hasRole('admin'), controller.findAll);
+router.get('/all', auth.hasRole('user'), controller.findAll);
 
 router.post('/', controller.addUser);
 
@@ -45,7 +45,7 @@ router.post('/', controller.addUser);
  *     }
  */
 router.get('/account/:account', controller.findByAccount);
-
 router.get('/name/:name', controller.findByName);
+router.get('/find', controller.find);
 
 module.exports = router;
