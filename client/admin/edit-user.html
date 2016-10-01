@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+  <title>Create User</title>
+  <link href="css/app.css">
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="../js/edit-user.js"></script>
+</head>
+<body>
+  <h1>Edit user</h1>
+  <p>Username: <input id="username" type="text" readonly=""></p>
+  <p>Role
+    <select id="role">
+      <option>user</option>
+      <option>admin</option>
+    </select> </p>
+  <p>Name: <input id="name" type="text"></p>
+  <p>Age: <input id="age" type="number"></p>
+  <input type="button" id="edit" value="Edit">
+  <br>
+  <p id="message"></p>
+</body>

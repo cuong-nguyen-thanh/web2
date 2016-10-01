@@ -1,9 +1,9 @@
 var http = require("http");
 var express = require("express");
 var bodyParser = require('body-parser');
-// var session = require('express-session');
-// var parseurl = require('parseurl');
-// var cookieParser = require('cookie-parser')
+var session = require('express-session');
+var parseurl = require('parseurl');
+var cookieParser = require('cookie-parser')
 var auth = require('./api/auth/auth.service');
 var mySecret = "techkids";
 /******************************** Mongo DB ***************************/
@@ -19,12 +19,12 @@ db.once('open', function() {
 
 /******************************** Express App ************************/
 var app = express();
-// app.use(cookieParser('techkids', {maxAge: 120}));
-// app.use(session({
-//   secret: "techkids"
-// }));
+app.use(cookieParser('techkids', {maxAge: 120}));
+app.use(session({
+  secret: "techkids"
+}));
 
-// app.use('/admin', auth.hasRole('admin'), express.static(__dirname + "/client/admin"));
+app.use('/admin', auth.hasRole('admin'), express.static(__dirname + "/client/admin"));
 app.use('/', express.static(__dirname + "/client"));
 app.use(bodyParser.json() );
 

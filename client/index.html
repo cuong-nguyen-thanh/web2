@@ -16,32 +16,23 @@
   <input type="button" onclick="login()" value="Login">
   <br>
   <p id="message"></p>
-  <div class="btn btn-primary">Test</div>
-  <table class="table">
-    <tr>
-      <th>A</th>
-      <th>A</th>
-      <th>A</th>
-    </tr>
-  </table>
+
   <script src="js/app.js"></script>
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
     function login(event) {
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
       var msgElement = document.getElementById("message");
       $.ajax({
-        url: "/api/user/login",
+        url: "/api/auth/local",
         method: "POST",
         contentType : "application/json",
         data: JSON.stringify({"username": username, "password": password})
       }).done(function(response) {
-        if (response.status) {
-          msgElement.innerHTML = "Success";
-        } else {
-          msgElement.innerHTML = "Fail";
+        if (response.token) {
+          document.cookie = "token=" + response.token;
         }
       });
     }
-  </script> -->
+  </script>
 </body>
