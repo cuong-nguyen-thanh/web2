@@ -5,7 +5,9 @@ var session = require('express-session');
 var parseurl = require('parseurl');
 var cookieParser = require('cookie-parser')
 var auth = require('./api/auth/auth.service');
+var passport = require('passport');
 var mySecret = "techkids";
+
 /******************************** Mongo DB ***************************/
 var mongoose = require('mongoose');
 //mongoose.connect('mongodb://admin:123456@ds033066.mlab.com:33066/techkidsweb2');
@@ -24,9 +26,11 @@ app.use(session({
   secret: "techkids"
 }));
 
-app.use('/admin', auth.hasRole('admin'), express.static(__dirname + "/client/admin"));
+//app.use('/admin', auth.hasRole('admin'), express.static(__dirname + "/client/admin"));
 app.use('/', express.static(__dirname + "/client"));
 app.use(bodyParser.json() );
+app.use(passport.initialize());
+app.use(passport.session());
 
 require('./routes')(app);
 

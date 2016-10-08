@@ -4,6 +4,7 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 var Schema = mongoose.Schema;
+var findOrCreate = require('mongoose-find-one-or-create');
 
 var user = new Schema({
   name: String,
@@ -19,6 +20,8 @@ var user = new Schema({
   salt: String,
   password: String
 });
+
+user.plugin(findOrCreate);
 
 /**
  * Pre-save hook
